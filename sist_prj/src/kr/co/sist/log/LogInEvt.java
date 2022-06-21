@@ -32,8 +32,14 @@ public class LogInEvt implements ActionListener {
 		id = log.getJtfId().getText();
 		password = log.getJpfPassword().getText();
 		if (password.equals(idInfo.get(id))) {
+			JOptionPane.showMessageDialog(log, id+"님 환영합니다!");
 			fileRead();
-			new Console();
+			if(file != null) {
+				new Console();
+				log.dispose();
+			}else {
+				JOptionPane.showMessageDialog(log, "파일을 선택해주세요","",JOptionPane.WARNING_MESSAGE);
+			}
 		} else if (id.equals("") || password.equals("")) { // 아이디나 비밀번호가 누락된 경우
 			JOptionPane.showMessageDialog(log, "아이디, 비밀번호를 입력하세요", "", JOptionPane.WARNING_MESSAGE);
 		} else { // 아이디나 비밀번호가 틀린 경우
@@ -47,7 +53,9 @@ public class LogInEvt implements ActionListener {
 			fd.setVisible(true);
 			path = fd.getDirectory();
 			name = fd.getFile();
-			file = new File(path + name);
+			if(!"".equals(path) && path != null) {
+				file = new File(path + name);
+			}//end if
 		}// fileRead
 
 	@Override
@@ -55,7 +63,7 @@ public class LogInEvt implements ActionListener {
 		if (e.getSource() == log.getJtfId() || e.getSource() == log.getJpfPassword()
 				|| e.getSource() == log.getJbtOk()) {
 			doLogIn();
-			log.dispose();
+			
 		} // end if
 
 	}// actionPerformed
