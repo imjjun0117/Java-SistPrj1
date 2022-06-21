@@ -33,7 +33,7 @@ public class ConsoleEvt implements ActionListener {
 		if (e.getSource() == con.reportBtn) {
 			if(LogInEvt.getId().equals("root") && LogInEvt.getPassword().equals("1111")) {
 				//root 계정으로 접속 시 차단한다.
-				JOptionPane.showMessageDialog(con, "문서를 생성할 수 있는 권한이 없음");
+				JOptionPane.showMessageDialog(con, "Report버튼의 접근권한이 없습니다.");
 			}else {
 				// 그 외에 로그인한 계정은 정상적으로 생성
 			try {

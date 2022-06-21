@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.logging.SimpleFormatter;
 
 import kr.co.sist.console.Console;
 import kr.co.sist.data.GetData;
@@ -25,7 +27,9 @@ public class ReportEvt {
 		FileDialog fd = new FileDialog(con, "파일을 저장합니다", FileDialog.SAVE); 
 		fd.setVisible(true);
 		String directory = fd.getDirectory();
-		String name = fd.getFile();
+		SimpleDateFormat sdf = new SimpleDateFormat("_yyMMdd");
+		String date = sdf.format(System.currentTimeMillis()); 
+		String name = fd.getFile()+date;
 		File file = new File(directory + name);
 		//filedialog로 경로 설정
 		GetData gd = new GetData();
